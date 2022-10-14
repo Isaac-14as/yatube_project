@@ -4,9 +4,9 @@ from .models import Post, Group
 def index(request):    
     template = 'posts/index.html'
     posts = Post.objects.order_by('-pub_date')[:10]
-    # В словаре context отправляем информацию в шаблон
     context = {
         'posts': posts,
+        'title': 'Последние обновления на сайте',
     }
     return render(request, template, context) 
 
@@ -18,6 +18,7 @@ def group_posts(request, slug):
     context = {
         'group': group,
         'posts': posts,
+        'title': 'Записи сообщества ' + group.title,
     }
     return render(request, template, context)
 
